@@ -25,11 +25,8 @@ class Post(models.Model):
       return self.title
   
 class Comment(models.Model):
-  creator = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-  content = models.TextField()
-  post    = models.ForeignKey(Post, on_delete=models.CASCADE)
-  
-  content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
-  object_id = models.PositiveIntegerField()
-  content_object = GenericForeignKey("content_type", "object_id")
-  
+    creator = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    content = models.TextField()
+    content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
+    object_id = models.PositiveIntegerField()
+    content_object = GenericForeignKey("content_type", "object_id")

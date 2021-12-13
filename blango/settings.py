@@ -49,7 +49,8 @@ class Dev(Configuration):
       'allauth.socialaccount',
       'allauth.socialaccount.providers.google',
       'rest_framework',
-      'rest_framework.authtoken'
+      'rest_framework.authtoken',
+      'django_filters'
   ]
 
   MIDDLEWARE = [
@@ -206,7 +207,7 @@ class Dev(Configuration):
       "rest_framework.authentication.SessionAuthentication",
       "rest_framework.authentication.TokenAuthentication",
     ],
-        "DEFAULT_PERMISSION_CLASSES": [
+    "DEFAULT_PERMISSION_CLASSES": [
         "rest_framework.permissions.IsAuthenticatedOrReadOnly"
     ],
     "DEFAULT_THROTTLE_CLASSES": [
@@ -220,7 +221,13 @@ class Dev(Configuration):
       "anon_burst"      : "10/minute",
       "user_sustained"  : "5000/day",
       "user_burst"      : "100/minute",
-    }
+    },
+    "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
+    "PAGE_SIZE": 50,
+    "DEFAULT_FILTER_BACKENDS": [
+      "django_filters.rest_framework.DjangoFilterBackend",
+      "rest_framework.filters.OrderingFilter"
+    ]
   }
 #   REGISTRATION_OPEN = False
   SITE_ID = 1
